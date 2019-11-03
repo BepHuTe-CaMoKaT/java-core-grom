@@ -1,19 +1,6 @@
 package lesson9;
 
 public class UserRepository {
-    public static void main(String[] args) {
-        User[] users = new User[5];
-        User user = new User(1, "andr", "fff05");
-        users[0] = user;
-
-        UserRepository userRepository = new UserRepository(users);
-        userRepository.getUserNames();
-        userRepository.getUserIds();
-        userRepository.getUserNameById(5);
-        userRepository.getUserByName("Jack");
-        userRepository.getUserBySessionId("Jack");
-        userRepository.save(user);
-    }
 
     User[] users;
 
@@ -68,7 +55,7 @@ public class UserRepository {
 
     public User getUserByName(String name) {
         for (User user : users) {
-            if (user != null && user.getName() == name) return user;
+            if (user != null && user.getName().equals(name)) return user;
         }
         return null;
     }
@@ -82,7 +69,7 @@ public class UserRepository {
 
     public User getUserBySessionId(String sessionId) {
         for (User user : users) {
-            if (user != null && user.getSessionId() == sessionId) return user;
+            if (user != null && user.getSessionId().equals(sessionId)) return user;
         }
         return null;
     }
