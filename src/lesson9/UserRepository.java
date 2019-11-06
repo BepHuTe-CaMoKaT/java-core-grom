@@ -107,7 +107,7 @@ public class UserRepository {
             if (user != null && user.getId() == id){
                 users[index]=null;
             }
-    }
+        }
 
     }
 }

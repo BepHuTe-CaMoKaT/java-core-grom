@@ -1,4 +1,4 @@
-package lesson11;
+package lesson15HW.api;
 
 public class Demo {
     BookingComAPI bookingComAPI = new BookingComAPI(null);
