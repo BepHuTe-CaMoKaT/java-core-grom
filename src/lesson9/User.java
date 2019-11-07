@@ -27,4 +27,13 @@ public class User {
     public String getSessionId() {
         return sessionId;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", sessionId='" + sessionId + '\'' +
+                '}';
+    }
 }

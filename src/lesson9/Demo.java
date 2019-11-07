@@ -1,5 +1,7 @@
 package lesson9;
 
+import java.util.Arrays;
+
 public class Demo {
     public static void main(String[] args) {
         User[] users = new User[5];
@@ -7,12 +9,12 @@ public class Demo {
         users[0] = user;
 
         UserRepository userRepository = new UserRepository(users);
-        userRepository.getUserNames();
-        userRepository.getUserIds();
-        userRepository.getUserNameById(5);
-        userRepository.getUserByName("Jack");
-        userRepository.getUserBySessionId("Jack");
-        userRepository.save(user);
+        System.out.println(Arrays.toString(userRepository.getUserNames()));
+        System.out.println(Arrays.toString(userRepository.getUserIds()));
+        System.out.println(userRepository.getUserNameById(1));
+        System.out.println(userRepository.getUserByName("andr"));
+        System.out.println(userRepository.getUserBySessionId("fff05"));
+        System.out.println(userRepository.save(user));
     }
 
 }
