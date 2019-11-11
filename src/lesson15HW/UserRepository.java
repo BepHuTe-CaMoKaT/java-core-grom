@@ -46,7 +46,7 @@ public class UserRepository {
 
     public User findUser(User user){
         for (User us:users){
-            if (us.getId()==user.getId()) return user;
+            if (us!=null&&us.getId()==user.getId()) return user;
         }
         return null;
     }

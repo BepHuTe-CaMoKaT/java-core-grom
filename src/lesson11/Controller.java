@@ -7,6 +7,10 @@ public class Controller {
         this.apis = apis;
     }
 
+    public Controller() {
+
+    }
+
     Room[] requestRooms(int price, int persons, String city, String hotel) {
         int count = 0;
         for (API api : apis) {
