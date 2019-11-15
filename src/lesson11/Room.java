@@ -23,6 +23,18 @@ public class Room {
 
     }
 
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", price=" + price +
+                ", persons=" + persons +
+                ", dateAvailableFrom=" + dateAvailableFrom +
+                ", hotelName='" + hotelName + '\'' +
+                ", cityName='" + cityName + '\'' +
+                '}';
+    }
+
     public long getId() {
         return id;
     }

@@ -7,25 +7,26 @@ public class BookingComAPI implements API {
         this.rooms = rooms;
     }
 
-    public BookingComAPI() {
-
-    }
 
 
     @Override
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int count = 0;
         for (Room room : rooms) {
-            if (room.getPersons() == persons && room.getPrice() >= price - 100 && room.getPrice() <= price + 100 && room.getCityName() == city && room.getHotelName() == hotel) {
-                count++;
+            if (room!=null){
+                if (room.getPersons() == persons && room.getPrice() >= price - 100 && room.getPrice() <= price + 100 && room.getCityName() == city && room.getHotelName() == hotel) {
+                    count++;
+                }
             }
         }
         Room[] res = new Room[count];
         int index = 0;
         for (Room room : rooms) {
-            if (room.getPersons() == persons && room.getPrice() >= price - 100 && room.getPrice() <= price + 100 && room.getCityName() == city && room.getHotelName() == hotel) {
-                res[index] = room;
-                index++;
+            if (room!=null){
+                if (room.getPersons() == persons && room.getPrice() >= price - 100 && room.getPrice() <= price + 100 && room.getCityName() == city && room.getHotelName() == hotel) {
+                    res[index] = room;
+                    index++;
+                }
             }
         }
 

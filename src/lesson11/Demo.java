@@ -1,23 +1,27 @@
 package lesson11;
 
 import java.util.Arrays;
+import java.util.Date;
 
 public class Demo {
     public static void main(String[] args) {
-        BookingComAPI bookingComAPI = new BookingComAPI();
-        TripAdvisorAPI tripAdvisorAPI = new TripAdvisorAPI();
-        GoogleAPI googleAPI = new GoogleAPI();
-        System.out.println(Arrays.toString(bookingComAPI.findRooms(100,4,"Sydney","Gold Cost")));
-        System.out.println(Arrays.toString(googleAPI.findRooms(150,34,"Silicon Valley","Heaven")));
-        System.out.println(Arrays.toString(tripAdvisorAPI.findRooms(3000,4,"Bern","Mountain Due")));
+        Room[] rooms =new Room[5];
+        Room room = new Room(1001,500,4,new Date(),"City","Hotel");
+        Room room1 = new Room(1002,400,3,new Date(),"City","Hotel");
+        rooms[0]=room;
+        rooms[1]=room1;
+
+        BookingComAPI bookingComAPI = new BookingComAPI(rooms);
+        TripAdvisorAPI tripAdvisorAPI = new TripAdvisorAPI(rooms);
+        GoogleAPI googleAPI = new GoogleAPI(rooms);
+
 
         Controller controller = new Controller();
-        System.out.println(Arrays.toString(controller.apis));
-        System.out.println(controller.cheapestRoom());
         System.out.println(Arrays.toString(controller.check(tripAdvisorAPI,googleAPI)));
-        System.out.println(Arrays.toString(controller.requestRooms(50,2,"City","hotel")));
+        System.out.println(Arrays.toString(googleAPI.getAll()));
 
     }
+
 
 
 }
