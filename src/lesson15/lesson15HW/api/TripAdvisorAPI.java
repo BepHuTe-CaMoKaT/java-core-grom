@@ -1,9 +1,9 @@
-package lesson15HW.api;
+package lesson15.lesson15HW.api;
 
-public class GoogleAPI implements API {
+public class TripAdvisorAPI implements API {
     Room[] rooms;
 
-    public GoogleAPI(Room[] rooms) {
+    public TripAdvisorAPI(Room[] rooms) {
         this.rooms = rooms;
     }
 
@@ -11,25 +11,24 @@ public class GoogleAPI implements API {
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int count = 0;
         for (Room room : rooms) {
-            if (room.equals(new Room(price,persons,city,hotel))) {
+            if (room.getPersons() >= persons - 1 && room.getPersons() <= persons + 1 && room.getPrice() == price && room.getCityName() == city && room.getHotelName() == hotel) {
                 count++;
             }
         }
+
         Room[] res = new Room[count];
         int index = 0;
         for (Room room : rooms) {
-            if (room.equals(new Room(price, persons, city, hotel))) {
+            if (room.getPersons() >= persons - 1 && room.getPersons() <= persons + 1 && room.getPrice() == price && room.getCityName() == city && room.getHotelName() == hotel) {
                 res[index] = room;
                 index++;
             }
-
         }
         return res;
     }
 
     @Override
-    public Room[] getAll() {
-        int count = 0;
+    public Room[] getAll() {int count = 0;
         for (Room room : rooms) {
             if (room != null) {
                 count++;
@@ -37,8 +36,8 @@ public class GoogleAPI implements API {
         }
         int index = 0;
         Room[] res = new Room[count];
-        for (Room room : rooms) {
-            if (room != null) {
+        for (Room room:rooms){
+            if (room!=null){
                 res[index] = room;
                 index++;
             }

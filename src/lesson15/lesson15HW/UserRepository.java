@@ -1,4 +1,4 @@
-package lesson15HW;
+package lesson15.lesson15HW;
 
 public class UserRepository {
     User[] users;

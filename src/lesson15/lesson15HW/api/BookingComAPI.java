@@ -1,9 +1,9 @@
-package lesson15HW.api;
+package lesson15.lesson15HW.api;
 
-public class TripAdvisorAPI implements API {
+public class BookingComAPI implements API {
     Room[] rooms;
 
-    public TripAdvisorAPI(Room[] rooms) {
+    public BookingComAPI(Room[] rooms) {
         this.rooms = rooms;
     }
 
@@ -11,24 +11,25 @@ public class TripAdvisorAPI implements API {
     public Room[] findRooms(int price, int persons, String city, String hotel) {
         int count = 0;
         for (Room room : rooms) {
-            if (room.getPersons() >= persons - 1 && room.getPersons() <= persons + 1 && room.getPrice() == price && room.getCityName() == city && room.getHotelName() == hotel) {
+            if (room.getPersons() == persons && room.getPrice() >= price - 100 && room.getPrice() <= price + 100 && room.getCityName() == city && room.getHotelName() == hotel) {
                 count++;
             }
         }
-
         Room[] res = new Room[count];
         int index = 0;
         for (Room room : rooms) {
-            if (room.getPersons() >= persons - 1 && room.getPersons() <= persons + 1 && room.getPrice() == price && room.getCityName() == city && room.getHotelName() == hotel) {
+            if (room.getPersons() == persons && room.getPrice() >= price - 100 && room.getPrice() <= price + 100 && room.getCityName() == city && room.getHotelName() == hotel) {
                 res[index] = room;
                 index++;
             }
         }
+
         return res;
     }
 
     @Override
-    public Room[] getAll() {int count = 0;
+    public Room[] getAll() {
+        int count = 0;
         for (Room room : rooms) {
             if (room != null) {
                 count++;
@@ -44,4 +45,5 @@ public class TripAdvisorAPI implements API {
         }
         return res;
     }
+
 }
