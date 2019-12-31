@@ -8,8 +8,9 @@ public class Demo {
         String storageCountry = "US";
         String[] formatSupported={"txt","jpg","fb2","exe"};
         Storage storage = new Storage(1001,files,formatSupported,storageCountry,100000);
-        Controller controller = new Controller();
-        Controller.put(storage,files[2]);
+        Storage storage1 = new Storage(1002,files,formatSupported,storageCountry,100000);
+        Controller.put(storage,files[1]);
+        Controller.transferAll(storage,storage1);
 
     }
 }

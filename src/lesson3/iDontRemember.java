@@ -16,7 +16,6 @@ public class iDontRemember {
             for (int j =0; j<array[i].length;j++){
                 array[i][j]=rnd.nextInt(10)+1;
                 sum+=array[i][j];
-
                 System.out.print(array[i][j] + "\t");
             }
             System.out.println();
