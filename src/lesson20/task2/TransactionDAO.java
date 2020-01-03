@@ -15,6 +15,9 @@ public class TransactionDAO {
     }
 
     public Transaction[] transactionList() {
+        for (Transaction tr:transactions){
+            System.out.println(tr);
+        }
         return null;
     }
 
@@ -59,7 +62,7 @@ public class TransactionDAO {
         return result;
     }
 
-    private void validate(Transaction transaction) throws Exception {
+    private void validate(Transaction transaction) throws LimitExceeded {
 //        - сумма транзакции больше указанного лимита
 //        - сумма транзакций за день больше дневного лимита
 //        - количество транзакций за день больше указанного лимита
@@ -74,9 +77,9 @@ public class TransactionDAO {
             count++;
         }
         if (sum > utils.getLimitTransactionsPerDayAmount())
-            throw new LimitExceeded("Transaction limit per day amount exceeded " + transaction.getId() + ". Can'tbe saved");
+            throw new LimitExceeded("Transaction limit per day amount exceeded " + transaction.getId() + ". Can't be saved");
 
         if (count > utils.getLimitTransactionsPerDayCount())
-            throw new LimitExceeded("Transaction limit per day count exceeded " + transaction.getId() + ". Can'tbe saved");
+            throw new LimitExceeded("Transaction limit per day count exceeded " + transaction.getId() + ". Can't be saved");
     }
 }

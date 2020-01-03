@@ -8,7 +8,7 @@ public class Controller {
     }
 
     public Transaction[] transactionList() {
-        return null;
+        return transactionDAO.transactionList();
     }
 
     public Transaction[] transactionList(String city) {

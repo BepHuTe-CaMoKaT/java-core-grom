@@ -53,8 +53,7 @@ public class Transaction {
                 amount == that.amount &&
                 city.equals(that.city) &&
                 description.equals(that.description) &&
-                type == that.type &&
-                dateCreated.equals(that.dateCreated);
+                type == that.type;
     }
 
     @Override
