@@ -11,6 +11,13 @@ public class TransactionDAO {
 
     public Transaction save(Transaction transaction) throws Exception {
         validate(transaction);
+        int index=0;
+        for (Transaction tr:transactions){
+            if (tr==null)
+                transactions[index]=transaction;
+            index++;
+        }
+
         return transaction;
     }
 
@@ -60,6 +67,10 @@ public class TransactionDAO {
             }
         }
         return result;
+    }
+
+    private Transaction saveTransaction(Transaction transaction){
+        return null;
     }
 
     private void validate(Transaction transaction) throws LimitExceeded {
