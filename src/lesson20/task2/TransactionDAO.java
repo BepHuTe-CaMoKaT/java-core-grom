@@ -10,14 +10,18 @@ public class TransactionDAO {
     private Utils utils = new Utils();
 
     public Transaction save(Transaction transaction) throws Exception {
-        validate(transaction);
-        int index=0;
         for (Transaction tr:transactions){
-            if (tr==null)
-                transactions[index]=transaction;
-            index++;
+            if (tr==null) validate(transaction);
         }
 
+        int index=0;
+        for (Transaction tr:transactions){
+            if (tr==null){
+                transactions[index]=transaction;
+                return transactions[index];
+            }
+            index++;
+        }
         return transaction;
     }
 
