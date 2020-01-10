@@ -33,6 +33,19 @@ public class TransactionDAO {
     }
 
     public Transaction[] transactionList(String city) {
+        int count=0;
+        for (Transaction tr:transactions){
+            if (tr.getCity().equals(city))
+                count++;
+        }
+        Transaction[] countedTransactions=new Transaction[count];
+        int index=0;
+        for (Transaction transaction:countedTransactions){
+            if (transaction!=null){
+                countedTransactions[index]=transaction;
+                return countedTransactions;
+            }
+        }
         return null;
     }
 

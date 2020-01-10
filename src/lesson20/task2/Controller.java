@@ -12,7 +12,7 @@ public class Controller {
     }
 
     public Transaction[] transactionList(String city) {
-        return null;
+        return transactionDAO.transactionList(city);
     }
 
     public Transaction[] transactionList(int amount) {
