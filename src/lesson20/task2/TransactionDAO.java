@@ -10,9 +10,7 @@ public class TransactionDAO {
     private Utils utils = new Utils();
 
     public Transaction save(Transaction transaction) throws Exception {
-        for (Transaction tr:transactions){
-            if (tr==null) validate(transaction);
-        }
+        validate(transaction);
 
         int index=0;
         for (Transaction tr:transactions){
@@ -26,9 +24,19 @@ public class TransactionDAO {
     }
 
     public Transaction[] transactionList() {
+        int count=0;
         for (Transaction tr:transactions){
-            System.out.println(tr);
+            if (tr!=null)
+                count++;
         }
+        Transaction[] counted=new Transaction[count];
+        int index=0;
+//        for (Transaction transaction:countedTransactions){
+//            if (transaction!=null){
+//                countedTransactions[index]=transaction;
+//                return countedTransactions;
+//            }
+//        }
         return null;
     }
 
