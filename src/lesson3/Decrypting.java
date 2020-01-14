@@ -1,49 +1,57 @@
 package lesson3;
 
-import java.security.InvalidKeyException;
-import java.security.Key;
-import javax.crypto.BadPaddingException;
-import javax.crypto.Cipher;
-import javax.crypto.IllegalBlockSizeException;
-import javax.crypto.KeyGenerator;
+import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class Decrypting {
 
-    static String algorithm = "DESede";
+    public static void main(String[] args) {
 
-    public static void main(String[] args) throws Exception {
+        String text;
+        String text2;
 
-        Key symKey = KeyGenerator.getInstance(algorithm).generateKey();
+        try {
+            Path encodedPath = Paths.get("C://Games//encoded.txt");
+            File encodedFile = new File(String.valueOf(encodedPath));
 
-        Cipher c = Cipher.getInstance(algorithm);
+            Path codedPath = Paths.get("C://Games//code.txt");
+            File codedFile = new File(String.valueOf(codedPath));
 
-        byte[] encryptionBytes = encryptF("texttoencrypt",symKey,c);
+            StringBuilder codedBuilder = new StringBuilder();
+            StringBuilder encodedBuilder = new StringBuilder();
 
-        System.out.println("Decrypted: " + decryptF(encryptionBytes,symKey,c));
-    }
+            try (
+                    FileInputStream encoded = new FileInputStream(encodedFile.getAbsolutePath());
+                    FileInputStream coded = new FileInputStream(codedFile.getAbsolutePath())
+            ) {
+                try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(coded))) {
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null){
+                        codedBuilder.append(line);
+                    }
+                    text = codedBuilder.toString();
+                }
+                try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(encoded))){
+                    String line;
+                    while ((line = bufferedReader.readLine()) != null){
+                        encodedBuilder.append(line);
+                    }
+                    text2 = encodedBuilder.toString();
+                }
+                char[] chars = text.toCharArray();
+                char[] chars2 = text2.toCharArray();
 
-    private static byte[] encryptF(String input,Key pkey,Cipher c) throws InvalidKeyException, BadPaddingException,
-
-            IllegalBlockSizeException {
-
-        c.init(Cipher.ENCRYPT_MODE, pkey);
-
-        byte[] inputBytes = input.getBytes();
-
-        return c.doFinal(inputBytes);
-    }
-
-    private static String decryptF(byte[] encryptionBytes,Key pkey,Cipher c) throws InvalidKeyException,
-
-            BadPaddingException, IllegalBlockSizeException {
-
-        c.init(Cipher.DECRYPT_MODE, pkey);
-
-        byte[] decrypt = c.doFinal(encryptionBytes);
-
-        String decrypted = new String(decrypt);
-
-        return decrypted;
+                char[] res = new char[text.length()];
+                for (int i = 0; i < res.length; i++) {
+                    res[i]=(char)(chars2[i]-chars[i]);
+                }
+                System.out.println(res);
+            }
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
 
