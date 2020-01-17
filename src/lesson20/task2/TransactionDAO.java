@@ -1,5 +1,7 @@
 package lesson20.task2;
 
+import lesson20.task2.exception.BadRequestException;
+import lesson20.task2.exception.InternalServerException;
 import lesson20.task2.exception.LimitExceeded;
 
 import java.util.Calendar;
@@ -10,17 +12,31 @@ public class TransactionDAO {
     private Utils utils = new Utils();
 
     public Transaction save(Transaction transaction) throws Exception {
+//       - сумма транзакции больше указанного лимита
+//        - сумма транзакций за день больше дневного лимита
+//        - количество транзакций за день больше указанного лимита
+//        - если город оплаты (совершения транзакции) не разрешен
+        if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
+            throw new LimitExceeded("Transaction limit exceeded " + transaction.getId() + ". Can't be saved");
+
         validate(transaction);
+        checkTransactionCity(transaction);
+
+        for (Transaction tr:transactions){
+            if (transaction.equals(tr)){
+                throw new BadRequestException("There is the same transaction already saved "+transaction.getId()+" Can't besaved");
+            }
+        }
 
         int index=0;
         for (Transaction tr:transactions){
             if (tr==null){
                 transactions[index]=transaction;
-                return transactions[index];
+                return transaction;
             }
             index++;
         }
-        return transaction;
+        throw new InternalServerException("There is no free space. Transaction "+transaction.getId()+" can't be saved");
     }
 
     public Transaction[] transactionList() {
@@ -99,10 +115,7 @@ public class TransactionDAO {
     }
 
     private void validate(Transaction transaction) throws LimitExceeded {
-//        - сумма транзакции больше указанного лимита
-//        - сумма транзакций за день больше дневного лимита
-//        - количество транзакций за день больше указанного лимита
-//        - если город оплаты (совершения транзакции) не разрешен
+//
         if (transaction.getAmount() > utils.getLimitSimpleTransactionAmount())
             throw new LimitExceeded("Transaction limit exceeded " + transaction.getId() + ". Can't be saved");
 
@@ -117,5 +130,11 @@ public class TransactionDAO {
 
         if (count + 1> utils.getLimitTransactionsPerDayCount())
             throw new LimitExceeded("Transaction limit per day count exceeded " + transaction.getId() + ". Can't be saved");
+    }
+    private void checkTransactionCity(Transaction transaction) throws BadRequestException {
+        for (Transaction tr:transactions){
+            if (!tr.getCity().equals(transaction.getCity()))
+                throw new BadRequestException("Can't be saved "+transaction.getId());
+        }
     }
 }
