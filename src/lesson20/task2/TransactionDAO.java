@@ -47,7 +47,7 @@ public class TransactionDAO {
         }
         Transaction[] counted=new Transaction[count];
         int index=0;
-        for (Transaction transaction:counted){
+        for (Transaction transaction:transactions){
             if (transaction!=null){
                 counted[index]=transaction;
                 index++;
