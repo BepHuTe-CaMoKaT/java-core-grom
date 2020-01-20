@@ -68,6 +68,7 @@ public class TransactionDAO {
         for (Transaction transaction:transactions){
             if (transaction!=null&&transaction.getCity().equals(city)){
                 counted[index]=transaction;
+                index++;
             }
         }
         return counted;
