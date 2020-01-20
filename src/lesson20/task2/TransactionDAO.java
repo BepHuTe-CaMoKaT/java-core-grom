@@ -24,7 +24,7 @@ public class TransactionDAO {
 
         for (Transaction tr:transactions){
             if (transaction.equals(tr)){
-                throw new BadRequestException("There is the same transaction already saved "+transaction.getId()+" Can't besaved");
+                throw new BadRequestException("There is the same transaction already saved "+transaction.getId()+" Can't be saved");
             }
         }
 
@@ -47,13 +47,15 @@ public class TransactionDAO {
         }
         Transaction[] counted=new Transaction[count];
         int index=0;
-//        for (Transaction transaction:countedTransactions){
-//            if (transaction!=null){
-//                countedTransactions[index]=transaction;
-//                return countedTransactions;
-//            }
-//        }
-        return null;
+        for (Transaction transaction:counted){
+            if (transaction!=null){
+                counted[index]=transaction;
+                return counted;
+            }
+            index++;
+        }
+
+        return counted;
     }
 
     public Transaction[] transactionList(String city) {
@@ -108,10 +110,6 @@ public class TransactionDAO {
             }
         }
         return result;
-    }
-
-    private Transaction saveTransaction(Transaction transaction){
-        return null;
     }
 
     private void validate(Transaction transaction) throws LimitExceeded {
