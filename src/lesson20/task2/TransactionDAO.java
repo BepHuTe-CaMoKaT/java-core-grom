@@ -60,18 +60,17 @@ public class TransactionDAO {
     public Transaction[] transactionList(String city) {
         int count=0;
         for (Transaction tr:transactions){
-            if (tr.getCity().equals(city))
+            if (tr!=null)
                 count++;
         }
-        Transaction[] countedTransactions=new Transaction[count];
+        Transaction[] counted=new Transaction[count];
         int index=0;
-        for (Transaction transaction:countedTransactions){
-            if (transaction!=null){
-                countedTransactions[index]=transaction;
-                return countedTransactions;
+        for (Transaction transaction:transactions){
+            if (transaction!=null&&transaction.getCity().equals(city)){
+                counted[index]=transaction;
             }
         }
-        return null;
+        return counted;
     }
 
     public Transaction[] transactionList(int amount) {
