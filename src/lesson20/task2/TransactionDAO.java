@@ -75,7 +75,20 @@ public class TransactionDAO {
     }
 
     public Transaction[] transactionList(int amount) {
-        return null;
+        int count=0;
+        for (Transaction tr:transactions){
+            if (tr!=null&&tr.getAmount()==amount)
+                count++;
+        }
+        Transaction[] counted=new Transaction[count];
+        int index=0;
+        for (Transaction transaction:transactions){
+            if (transaction!=null&&transaction.getAmount()==amount){
+                counted[index]=transaction;
+                index++;
+            }
+        }
+        return counted;
     }
 
     private Transaction[] getTransactionsPerDay(Date dateOfCurTransaction) {

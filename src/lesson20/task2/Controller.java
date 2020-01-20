@@ -16,6 +16,6 @@ public class Controller {
     }
 
     public Transaction[] transactionList(int amount) {
-        return null;
+        return transactionDAO.transactionList(amount);
     }
 }
