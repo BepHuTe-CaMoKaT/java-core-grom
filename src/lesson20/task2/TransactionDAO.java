@@ -50,9 +50,8 @@ public class TransactionDAO {
         for (Transaction transaction:counted){
             if (transaction!=null){
                 counted[index]=transaction;
-                return counted;
+                index++;
             }
-            index++;
         }
 
         return counted;
