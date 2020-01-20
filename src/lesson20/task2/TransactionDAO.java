@@ -60,7 +60,7 @@ public class TransactionDAO {
     public Transaction[] transactionList(String city) {
         int count=0;
         for (Transaction tr:transactions){
-            if (tr!=null)
+            if (tr!=null&&tr.getCity().equals(city))
                 count++;
         }
         Transaction[] counted=new Transaction[count];
