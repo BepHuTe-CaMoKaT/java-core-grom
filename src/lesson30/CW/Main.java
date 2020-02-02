@@ -2,34 +2,43 @@ package lesson30.CW;
 
 import lesson30.CW.*;
 
-public class Main {
+public class Main  {
     public static void main(String[] args) {
-        Bank euBank = new EUBank(1001,"Sweden", Currency.EUR,100,1400,4,41414144);
-        User user = new User(1,"Denis",12200,40,"GMD",1500, euBank);
-        User user1 = new User(2,"Denis",12200,40,"GMD",1500, euBank);
-        BankSystem bankSystem = new UkrainianBankSystem();
-        bankSystem.withdraw(user,150);
-        bankSystem.withdraw(user1,150);
+        UkrainianBankSystem BankSystem=new UkrainianBankSystem();
 
-        System.out.println(user.getBalance());
-        System.out.println(user1.getBalance());
+        Bank euBank1 = new EUBank(1222, "Poland", Currency.EUR, 100, 1400, 4, 1111111);
+        Bank euBank2 = new EUBank(1222, "Poland", Currency.EUR, 100, 1400, 4, 1111111);
+        Bank usBank1 = new USBank(1222, "Poland", Currency.EUR, 100, 1400, 4, 1111111);
+        Bank usBank2 = new USBank(1222, "Poland", Currency.EUR, 100, 1400, 4, 1111111);
+        Bank chinaBank1 = new ChinaBank(1222, "Poland", Currency.EUR, 100, 1400, 4, 1111111);
+        Bank chinaBank2 = new ChinaBank(1222, "Poland", Currency.EUR, 100, 1400, 4, 1111111);
 
-        Bank usBank = new USBank(1002,"Sweden",Currency.EUR,100,1400,4,41414144);
-        User user2 = new User(3,"Denis",12200,40,"GMD",1500, usBank);
-        User user3 = new User(4,"Denis",12200,40,"GMD",1500, usBank);
-        bankSystem.withdraw(user2,150);
-        bankSystem.withdraw(user3,150);
-        System.out.println(user2.getBalance());
-        System.out.println(user3.getBalance());
 
-        Bank cnBank = new ChinaBank(1003,"Sweden",Currency.EUR,100,1400,4,41414144);
-        User user4 = new User(5,"Denis",12200,40,"GMD",1500, cnBank);
-        User user5 = new User(6,"Denis",12200,40,"GMD",1500, cnBank);
-        bankSystem.withdraw(user4,150);
-        bankSystem.withdraw(user5,150);
-        System.out.println(user4.getBalance());
-        System.out.println(user5.getBalance());
+        User user1 = new User(111, "Andrii", 1000, 4, "BSF", 100, euBank1);
+        User user2 = new User(112, "Andrii", 1000, 4, "BSF", 100, euBank1);
+        User user3 = new User(113, "Andrii", 2345, 4, "BSF", 100, usBank1);
+        User user4 = new User(114, "Andrii", 2345, 4, "BSF", 100, usBank2);
+        User user5 = new User(115, "Andrii", 2345, 4, "BSF", 100, chinaBank1);
+        User user6 = new User(116, "Andrii", 2345, 4, "BSF", 100, chinaBank2);
+
+        BankSystem.fund(user1,23);
+        // Thread.sleep(2000);
+        try {
+            Thread.sleep(1010);
+        }
+        catch (Exception E){}
+
+
+        BankSystem.fund(user1,25);
+        try {
+            Thread.sleep(1010);
+        }
+        catch (Exception E){}
+
+
+        BankSystem.withdraw(user1,2);
+
+
+        System.out.println(BankSystem.getTransaction());
     }
-
-
 }
