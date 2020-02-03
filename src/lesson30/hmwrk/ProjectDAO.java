@@ -4,9 +4,7 @@ import java.util.TreeSet;
 
 public class ProjectDAO {
 
-
     private  TreeSet<Project> projectSet = new TreeSet<>();
-
 
     public void add(Project p) {
         projectSet.add(p);
@@ -16,11 +14,4 @@ public class ProjectDAO {
         return projectSet;
     }
 
-    public void print() {
-        for (Project project : projectSet) {
-            System.out.println(project);
-
-        }
-
-    }
 }
