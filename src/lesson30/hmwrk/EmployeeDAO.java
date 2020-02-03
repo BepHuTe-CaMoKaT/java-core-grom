@@ -1,7 +1,5 @@
 package lesson30.hmwrk;
 
-import com.sun.source.tree.Tree;
-
 import java.util.TreeSet;
 
 public class EmployeeDAO {
