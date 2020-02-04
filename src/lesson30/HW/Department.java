@@ -1,12 +1,12 @@
 package lesson30.HW;
 
-import java.util.Collection;
+import java.util.Set;
 
 public class Department {
     private DepartmentType type;
-    private Collection<Employee> employees;
+    private Set<Employee> employees;
 
-    public Department(DepartmentType type, Collection<Employee> employees) {
+    public Department(DepartmentType type, Set<Employee> employees) {
         this.type = type;
         this.employees = employees;
     }
@@ -15,7 +15,15 @@ public class Department {
         return type;
     }
 
-    public Collection<Employee> getEmployees() {
+    public Set<Employee> getEmployees() {
         return employees;
+    }
+
+    @Override
+    public String toString() {
+        return "Department{" +
+                "type=" + type +
+                ", employees=" + employees +
+                '}';
     }
 }

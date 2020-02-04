@@ -1,28 +1,11 @@
 package lesson30.HW;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Firm {
     private Date dateFounded;
-    private Collection<Department> departments;
-    private Collection<Customer> customers;
-
-    public Firm(Date dateFounded, Collection<Department> departments, Collection<Customer> customers) {
-        this.dateFounded = dateFounded;
-        this.departments = departments;
-        this.customers = customers;
-    }
-
-    public Date getDateFounded() {
-        return dateFounded;
-    }
-
-    public Collection<Department> getDepartments() {
-        return departments;
-    }
-
-    public Collection<Customer> getCustomers() {
-        return customers;
-    }
+    private TreeSet<Department> departments = new TreeSet<>();
+    private TreeSet<Customer> customers = new TreeSet<>();
 }
